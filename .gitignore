@@ -1,0 +1,6 @@
+*.logs
+test01.db
+application/logs*
+application/controllers/Welcome.php
+application/controllers/Site.php
+application/views/site

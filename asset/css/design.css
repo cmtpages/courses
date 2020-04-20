@@ -1,0 +1,214 @@
+html {
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+body {
+	background-color: #f7f7f7;
+	margin: 0;
+	padding: 0;
+	font-size: 1.2em;
+	text-align: justify;
+    font-family: Source Sans Pro,Segoe UI,Trebuchet MS,Helvetica,Helvetica Neue,Arial,sans-serif;
+	margin: auto;
+	width: 1300px;
+	
+}
+h1, h2, h3, h4, h5, h6, p, ol, ol li, ul, ul li {
+	margin: 0;
+	padding: 0;
+}
+a {
+    color: #1088bf;
+}
+a:hover {
+    text-decoration: none;
+    color: #ea9408;
+}
+header {
+    border-bottom: solid;
+    border-color: #f8ad32;
+	background-color: #0c4864;
+	height: 60px;
+	margin-bottom: 10px;
+    text-align: center;
+    font-size: 1.1em;
+    color: white;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+nav {
+    width: 250px;
+    float:left;
+    vertical-align: top;
+    background-color: #e7e7e7;
+    padding-bottom: 2em;
+}
+nav h2 {
+    color: #084561;
+    border-bottom: 1px solid #f8ad32;
+    padding-left: 10%;
+    font-size: 1.4rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+nav a {
+    padding-left: 15%;
+}
+nav ul {
+	list-style-type: none;
+}
+nav ul li.selected {
+    background-color: #f7f7f7;
+}
+section{
+    width: 1030px;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 20px;
+    padding-right: 0; 
+}
+section div.liens_haut_page {
+    margin-bottom: 5px;
+    margin-right: 150px;
+    text-align: right;
+    font-size: 1.2em;
+}
+section div.filtres_haut_page form {
+    display: inline;
+	border: 0
+	margin: 0;
+	padding: 0;
+    background-color: #f5f5f5;
+	border: 0;
+	margin: 0;
+}
+section a img {
+	border: 1px solid #333;
+	border-radius: 5px;
+	padding: 3px;
+}
+section form input[type=submit] {
+	margin-right: 25px;
+}
+section form ul li .errorlist{
+    display: inline;
+    color: red;
+    font-style: italic;
+    background-color:transparent;
+}
+section ul li.confirm_message {
+	display: inline;
+    color: green;
+    font-style: italic;
+    background-color:transparent;
+}
+section ul li.error_message {
+	display: inline;
+    color: red;
+    font-weight: bold;
+    background-color:transparent;
+}
+section h2 {
+    font-size: 2.2rem;
+    line-height: 50px;
+    margin-bottom: 20px;
+    background: #fff;
+    border-top: 1px solid #e0e4e5;
+    padding-left: 1%;
+    font-weight: 400;
+    color: #ea9408;
+    text-decoration: none;
+    border-bottom: 1px solid #f8ad32;
+}
+section h3 {
+	color: #ea9408;
+	text-decoration: none;
+	margin-top: 40px;
+	margin-bottom: 15px;
+	font-size: 2rem;
+}
+section h4 {
+	font-size: 1.8rem;
+	margin-bottom: 12px;	
+}
+table {
+	width: 100%;
+    border-collapse:collapse;
+    border: 1px solid black;
+    text-align: center;
+}
+section dl dd {
+	margin-left: 290px;
+    margin-bottom: 5px;
+	padding: 2px 5px;
+	display: block;
+}
+section dl dd ul {
+	list-style-type: none;
+}
+section dl dt {
+	width: 240px;
+	background-color: #ececec;
+	padding: 2px 20px;
+	float: left;
+    text-align: right;
+}
+section form {
+ 	border: 1px dashed #cccccc;
+	margin: 10px 0;
+	padding: 5px;
+    background-color: #f5f5f5;
+	border: 1px dashed #999999;
+	margin: 10px 20px;
+	padding: 10px
+}
+section form ul {
+    list-style-type: none;
+}
+section form ul li {
+	padding: 5px;
+    margin-bottom: 3px;
+}
+section form ul li:nth-child(even) {
+	background-color: #ececec;
+}
+section form ul li:nth-child(odd) {
+	background-color: #dbdbdb;
+}
+section form ul li label {
+	width:50%; /* MODIFIABLE À 50 % SI TROP GRAND */ 
+	margin-right: 5px;
+	float: left;
+	cursor: pointer;
+}
+section form ul li label.long_label {
+	width:70%; /* MODIFIABLE À 50 % SI TROP GRAND */ 
+	margin-right: 5px;
+	float: left;
+	cursor: pointer;
+}
+section ul, section ol {
+	list-style-position: inside;
+}
+table tr th {
+	background-color: #cccccc;
+	color: #333333;
+	padding: 5px;
+    padding: 10px;
+}
+table tr td {
+	border-collapse:collapse;
+    border: 1px solid black;
+    padding: 10px;
+}
+footer {
+    border-top: 1px dotted;
+    font-size: x-small;
+    margin-right: 2px;
+    margin-top: 13px;
+    text-align: center;
+}

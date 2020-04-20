@@ -44,6 +44,7 @@ nav {
     vertical-align: top;
     background-color: #e7e7e7;
     padding-bottom: 2em;
+    border-radius: 5px;
 }
 nav h2 {
     color: #084561;
@@ -204,6 +205,10 @@ table tr td {
 	border-collapse:collapse;
     border: 1px solid black;
     padding: 10px;
+/*     background-color: #ececec; */
+}
+table tr td.colonnefusion {
+    background-color: #dbdbdb;
 }
 footer {
     border-top: 1px dotted;

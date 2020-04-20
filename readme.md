@@ -14,4 +14,4 @@ Clonez le dépôt sur votre serveur web et modifiez le fichier application/confi
 Initialisez les schémas dans la base en exécutant les requêtes de schema_db.sql, puis supprimez le fichier.
 
 ## Fonctionnalités prévues
-Sur une recette, ajout saisie du nombre de personnes, ce qui se répercuterait sur la génération des listes de courses.
+Sur une recette, saisie du nombre de personnes, ce qui se répercuterait sur la génération des listes de courses.

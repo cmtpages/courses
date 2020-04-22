@@ -4,7 +4,7 @@
     <form action="creer" method="post" enctype="multipart/form-data">
 		<ul>
 			<li>
-				<label for="liste_nom">Nom de la liste</label>
+				<label for="liste_nom" class="required">Nom de la liste</label>
 				<input type="text" id="liste_nom" name="liste_nom" size="35" required>
 				<?php echo form_error("liste_nom"); ?>
 			</li>

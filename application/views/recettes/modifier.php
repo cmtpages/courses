@@ -4,7 +4,7 @@
     <form class="repeater" action="<?php echo $post['details']['recette_id']; ?>" method="post" enctype="multipart/form-data">
 		<ul>
 			<li>
-				<label for="recette_nom">Nom de la recette</label>
+				<label for="recette_nom" class="required">Nom de la recette</label>
 				<input type="text" id="recette_nom" name="recette_nom" value="<?php echo $post['details']['recette_nom']; ?>" size="35" required>
 				<?php echo form_error("recette_nom"); ?>
 			</li>

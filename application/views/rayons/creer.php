@@ -4,7 +4,7 @@
     <form action="creer" method="post" enctype="multipart/form-data">
 		<ul>
 			<li>
-				<label for="rayon_nom">Nom du rayon</label>
+				<label for="rayon_nom" class="required">Nom du rayon</label>
 				<input type="text" id="rayon_nom" name="rayon_nom" size="35" required>
 				<?php echo form_error("rayon_nom"); ?>
 			</li>

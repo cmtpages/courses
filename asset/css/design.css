@@ -95,11 +95,16 @@ section a img {
 section form input[type=submit] {
 	margin-right: 25px;
 }
-section form ul li .errorlist{
+section form ul li.errorlist{
     display: inline;
     color: red;
     font-style: italic;
     background-color:transparent;
+}
+section form ul li label.required:after{
+    color: #cc0000;
+    content: " *";
+    font-weight: bold;
 }
 section ul li.confirm_message {
 	display: inline;

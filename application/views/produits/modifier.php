@@ -4,12 +4,12 @@
     <form action="<?php echo $post['produit_id']; ?>" method="post" enctype="multipart/form-data">
 		<ul>
 			<li>
-				<label for="produit_nom">Nom du produit</label>
+				<label for="produit_nom" class="required">Nom du produit</label>
 				<input type="text" id="produit_nom" name="produit_nom" value="<?php echo $post['produit_nom']; ?>" size="35" required>
 				<?php echo form_error("produit_nom"); ?>
 			</li>
 			<li>
-				<label for="rayon_id">Nom du rayon</label>
+				<label for="rayon_id" class="required">Nom du rayon</label>
 				<select class="select2" name="rayon_id" id="rayon_id" required>
 					<option value="">----------</option>
 					<?php foreach($rayons as $rayon) {

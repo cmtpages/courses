@@ -4,7 +4,7 @@
     <form action="<?php echo $post['rayon_id']; ?>" method="post" enctype="multipart/form-data">
 		<ul>
 			<li>
-				<label for="rayon_nom" required>Nom du rayon</label>
+				<label for="rayon_nom" class="required">Nom du rayon</label>
 				<input type="text" id="rayon_nom" name="rayon_nom" value="<?php echo $post['rayon_nom']; ?>" size="35" required>
 				<?php echo form_error("rayon_nom"); ?>
 			</li>

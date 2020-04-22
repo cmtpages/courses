@@ -29,7 +29,7 @@
 				else { ?>
 						<li data-repeater-item>
 							<label for="recette_id">
-								<select name="recette_id" required>
+								<select class="select2" name="recette_id" required>
 								<?php foreach($recettes as $recette) {
 									echo "<option value=".$recette['recette_id'].">".$recette['recette_nom']."</option>";
 								}; ?>

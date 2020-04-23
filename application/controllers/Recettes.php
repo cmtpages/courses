@@ -150,6 +150,7 @@ class Recettes extends CI_Controller {
 		// Préparation des données pour la création ou la modification d'une recette.
 		$data['recette'] = array(
 			'recette_nom' => $post['recette_nom'],
+			'recette_nombre_personnes' => $post['recette_nombre_personnes'],
 			'recette_instructions' => $post['recette_instructions'],
 			'recette_date_creation' => date('Y-m-d H:i:s'),
 		);

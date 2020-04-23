@@ -6,7 +6,10 @@
 			<li>
 				<label for="recette_nom" class="required">Nom de la recette</label>
 				<input type="text" id="recette_nom" name="recette_nom" size="35" required>
-				<?php echo form_error("recette_nom"); ?>
+			</li>
+			<li>
+				<label for="recette_nombre_personnes">Nombre de personnes</label>
+				<input type="number" id="recette_nombre_personnes" name="recette_nombre_personnes" min="0" step="1"/>
 			</li>
 		</ul>
 		<h3>Liste des ingrédients</h3>

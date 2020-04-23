@@ -47,7 +47,7 @@ class Recettes_model extends CI_Model
 	
 	// PROTECTED FUNCTION
 	protected function details_recette($id_recette) {
-		$query = $this->db->select('recette_nom, recette_instructions, recette_id')
+		$query = $this->db->select('recette_nom, recette_instructions, recette_nombre_personnes, recette_id')
 				 ->from($this->table)
 				 ->where('recette_date_suppression IS NULL', NULL, False)		         ->where('recette_id ='.$id_recette)
 				 ->get()->result_array();

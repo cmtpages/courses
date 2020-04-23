@@ -13,6 +13,8 @@ Clonez le dépôt sur votre serveur web et modifiez le fichier application/confi
 
 Initialisez les schémas dans la base en exécutant les requêtes de schema_db.sql, puis supprimez le fichier.
 
+La page d'entrée vers l'application est /index.php/rayons/lister.
+
 ## Contributions
 J'accepte volontiers toutes les contributions, mais comme précisé plus haut, je ne m'engage pas à fournir une documentation détaillée pour le code, ni d'ailleurs à proposer un code très propre.
 

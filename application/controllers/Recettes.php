@@ -39,6 +39,14 @@ class Recettes extends CI_Controller {
 		
 		$data['recette']['details'] = $data['recette']['details'][0];
 		
+		// Calcul de la quantite d'ingredients à afficher en multipliant par le nb de personnes dans la recette.
+		$nb_pers = $data['recette']['details']['recette_nombre_personnes'];
+		if(!empty($nb_pers)) {
+            foreach($data['recette']['ingredients'] as $i=>$ingredient) {
+                $ingredient['ingredient_quantite'] = $ingredient['ingredient_quantite']*$nb_pers;
+                $data['recette']['ingredients'][$i] = $ingredient;
+            }
+		}		
 		$this->load->view('recettes/consulter', $data);
         $this->load->view('common/footer');
 	}
@@ -103,6 +111,12 @@ class Recettes extends CI_Controller {
 				redirect('recettes/lister');
 			}
 			$recette['details'] = $recette['details'][0];
+			foreach($recette['ingredients'] as $i=>$ingredient) {
+                if(!empty($ingredient['ingredient_quantite']) and !empty($recette['details']['recette_nombre_personnes'])) {
+                    $recette['ingredients'][$i]['ingredient_quantite'] = round($ingredient['ingredient_quantite']*$recette['details']['recette_nombre_personnes'], 2);
+                }
+			}
+			
 			$data['post'] = $recette;
 			
 			$data['produits'] = $this->produits_model->lister_produits('p.produit_nom');
@@ -160,7 +174,7 @@ class Recettes extends CI_Controller {
 			$recette_id = $id_recette;
 			$this->recettes_model->update_recette($id_recette, $data['recette']);
 		}
-		// Prépération des données pour l'insertion des ingrédients.
+		// Préparation des données pour l'insertion des ingrédients.
 		foreach($post['ingredients'] as $i => $ingredient) {
 			$ingredient['ingredient_date_creation'] = date('Y-m-d H:i:s');
 			$ingredient['recette_id'] = $recette_id;
@@ -174,8 +188,13 @@ class Recettes extends CI_Controller {
 				$ingredient['ingredient_quantite'] = NULL;
 				$ingredient['unite_id'] = NULL;
 			}
+			// Calcul de la quantité équivalente pour 1 personne.
+			if(!empty($data['recette']['recette_nombre_personnes']) and !empty($ingredient['ingredient_quantite'])) {
+                $ingredient['ingredient_quantite'] = $ingredient['ingredient_quantite']/$data['recette']['recette_nombre_personnes'];
+			}
 			$data['ingredients'][$i] = $ingredient;
 		}
+		
 		$this->recettes_model->save_recette_ingredients($data['ingredients']);
     }
     

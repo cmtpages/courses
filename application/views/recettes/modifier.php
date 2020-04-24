@@ -10,7 +10,7 @@
 			</li>
 			<li>
 				<label for="recette_nombre_personnes">Nombre de personnes</label>
-				<input type="number" id="recette_nombre_personnes" name="recette_nombre_personnes" value="<?php echo $post['details']['recette_nombre_personnes']; ?>" min="0" step="1"/>
+				<input type="number" id="recette_nombre_personnes" name="recette_nombre_personnes" value="<?php echo $post['details']['recette_nombre_personnes']; ?>" min="1" step="1"/>
 			</li>
 		</ul>
 		<h3>Liste des ingrédients</h3>

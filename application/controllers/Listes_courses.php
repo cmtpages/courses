@@ -86,7 +86,7 @@ class Listes_courses extends CI_Controller {
 			}
 			$this->listescourses_model->creer_achats($data['achats']);
 			$this->session->set_flashdata('confirm_message', 'La liste d\'achats a été créée.');
-			redirect('listes_courses/lister');
+// 			redirect('listes_courses/lister');
 		}
 		else {
 			$data['produits'] = $this->produits_model->lister_produits();
@@ -104,7 +104,7 @@ class Listes_courses extends CI_Controller {
 					'produit_nom' => $achat['produit_nom'],
 					'unite_id' => $id_unite_reference,
 					'unite_nom' => $nom_unite_reference,
-					'achat_quantite' => convertir($achat['unite_nom'], $nom_unite_reference, $achat['ingredient_quantite_totale']),
+					'achat_quantite' => round(convertir($achat['unite_nom'], $nom_unite_reference, $achat['ingredient_quantite_totale']), 2),
 				);
 			}
 			$this->load->view('listes_courses/creer_liste_achats', $data);
@@ -129,6 +129,7 @@ class Listes_courses extends CI_Controller {
 		else { // Sinon, affichage du formulaire
 			$data['id_liste'] = $id_liste_courses;
 			$data['recettes'] = $this->recettes_model->lister_recettes();
+			
 			$this->load->view('listes_courses/creer_liste_recettes', $data);
 		}
         $this->load->view('common/footer');

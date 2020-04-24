@@ -8,8 +8,8 @@
 				<input type="text" id="recette_nom" name="recette_nom" size="35" required>
 			</li>
 			<li>
-				<label for="recette_nombre_personnes">Nombre de personnes</label>
-				<input type="number" id="recette_nombre_personnes" name="recette_nombre_personnes" min="1" step="1"/>
+				<label for="recette_nombre_personnes" class="required">Nombre de personnes</label>
+				<input type="number" id="recette_nombre_personnes" name="recette_nombre_personnes" min="1" step="1" required/>
 			</li>
 		</ul>
 		<h3>Liste des ingrédients</h3>

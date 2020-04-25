@@ -18,7 +18,7 @@
                     echo "</option>";
                 } ?>
                 </select>
-                <input type="number" id="courses_recette_nombre_personnes" name="courses_recette_nombre_personnes" min="1" step="1" value="2" required/>
+                <input type="number" id="courses_recette_nombre_personnes" name="courses_recette_nombre_personnes" min="1" step="1" required/>
                 <input data-repeater-delete type="button" value="Supprimer" size="2"/>
             </li>
 		</ul><input data-repeater-create id="repeater-button" type="button" value="Recette supplémentaire"/>

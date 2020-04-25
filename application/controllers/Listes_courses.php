@@ -86,7 +86,7 @@ class Listes_courses extends CI_Controller {
 			}
 			$this->listescourses_model->creer_achats($data['achats']);
 			$this->session->set_flashdata('confirm_message', 'La liste d\'achats a été créée.');
-// 			redirect('listes_courses/lister');
+			redirect('listes_courses/lister');
 		}
 		else {
 			$data['produits'] = $this->produits_model->lister_produits();

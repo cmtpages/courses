@@ -47,15 +47,15 @@ nav {
     border-radius: 5px;
 }
 nav h2 {
-    color: #084561;
     border-bottom: 1px solid #f8ad32;
     padding-left: 10%;
-    font-size: 1.4rem;
     margin-top: 30px;
     margin-bottom: 15px;
 }
 nav a {
-    padding-left: 15%;
+    color: #084561;
+    text-decoration: none;
+    font-size: 1.4rem;
 }
 nav ul {
 	list-style-type: none;

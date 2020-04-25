@@ -52,6 +52,7 @@
 			<?php } ?>
 		</ul>
 		<input data-repeater-create id="repeater-button" type="button" value="Achat supplémentaire"/>
-		<input type="submit" value="Valider" ><?php echo anchor('listes_courses/modifier_liste_recettes/'.$id_liste, 'Étape précédente', 'title="Étape précédente"'); ?>
+		<input type="submit" value="Valider" >
+<!-- 		<?php echo anchor('listes_courses/modifier_liste_recettes/'.$id_liste, 'Étape précédente', 'title="Étape précédente"'); ?> -->
     </form>
 </section>

@@ -39,7 +39,7 @@ header {
     padding-bottom: 10px;
 }
 nav {
-    width: 250px;
+    width: 20%;
     float:left;
     vertical-align: top;
     background-color: #e7e7e7;
@@ -61,12 +61,12 @@ nav h2.selected {
     background-color: #f7f7f7;
 }
 section{
-    width: 1030px;
+    width: 79%;
     margin-left: auto;
     margin-right: auto;
     display: inline-block;
     vertical-align: top;
-    padding-left: 20px;
+    padding-left: 1%;
     padding-right: 0; 
 }
 section div.liens_haut_page {

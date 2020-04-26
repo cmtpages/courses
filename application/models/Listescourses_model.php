@@ -75,13 +75,12 @@ class Listescourses_model extends CI_Model
 	}
 	
 	public function lister_ingredients_recette_liste_de_courses($id_liste) {
-		$query = $this->db->select('SUM(i.ingredient_quantite*cr.courses_recette_nombre_personnes) AS ingredient_quantite_totale, p.produit_id, p.produit_nom, r.rayon_nom, u.unite_id, u.unite_nom')
+		$query = $this->db->select('SUM(i.ingredient_quantite*cr.courses_recette_nombre_personnes) AS ingredient_quantite_totale, p.produit_id, p.produit_nom, u.unite_id, u.unite_nom')
 		         ->from('recettes_ingredients AS i')
 		         ->join('recettes_recette AS r', 'r.recette_id=i.recette_id')
 		         ->join('courses_recettes AS cr', 'cr.recette_id=r.recette_id')
 		         ->join('courses_listes AS l', 'cr.liste_id=l.liste_id')
 		         ->join('produits_produit AS p', 'i.produit_id=p.produit_id')
-		         ->join('rayons_rayon AS r', 'p.rayon_id=r.rayon_id')
 		         ->join('referentiel_unites AS u', 'u.unite_id=i.unite_id', 'left')
 		         ->where('l.liste_id='.$id_liste)
 		         ->where('i.ingredient_date_suppression IS NULL', NULL, False)

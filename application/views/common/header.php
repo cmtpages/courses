@@ -23,6 +23,8 @@
 	<?php echo link_tag('asset/css/select2.min.css'); ?>
     <script src="<?php echo base_url().'asset/js/chosen/select2.min.js'; ?>"></script>
 	<script src="<?php echo base_url().'asset/js/chosen/select2.js'; ?>"></script>
+	
+	<script src="<?php echo base_url().'asset/js/compteur_recettes/compteur_recettes.js'; ?>"></script>
 	<title>Gestion des listes de courses</title>
 </head>
 

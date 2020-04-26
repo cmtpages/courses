@@ -39,37 +39,34 @@ header {
     padding-bottom: 10px;
 }
 nav {
-    width: 250px;
+    width: 20%;
     float:left;
     vertical-align: top;
     background-color: #e7e7e7;
     padding-bottom: 2em;
     border-radius: 5px;
 }
-nav h2 {
+nav a {
     color: #084561;
+    text-decoration: none;
+    font-size: 1.4rem;
+}
+nav h2 {
     border-bottom: 1px solid #f8ad32;
     padding-left: 10%;
-    font-size: 1.4rem;
     margin-top: 30px;
     margin-bottom: 15px;
 }
-nav a {
-    padding-left: 15%;
-}
-nav ul {
-	list-style-type: none;
-}
-nav ul li.selected {
+nav h2.selected {
     background-color: #f7f7f7;
 }
 section{
-    width: 1030px;
+    width: 79%;
     margin-left: auto;
     margin-right: auto;
     display: inline-block;
     vertical-align: top;
-    padding-left: 20px;
+    padding-left: 1%;
     padding-right: 0; 
 }
 section div.liens_haut_page {
@@ -95,11 +92,16 @@ section a img {
 section form input[type=submit] {
 	margin-right: 25px;
 }
-section form ul li .errorlist{
+section form ul li.errorlist{
     display: inline;
     color: red;
     font-style: italic;
     background-color:transparent;
+}
+section form ul li label.required:after{
+    color: #cc0000;
+    content: " *";
+    font-weight: bold;
 }
 section ul li.confirm_message {
 	display: inline;

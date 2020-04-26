@@ -29,6 +29,7 @@ class Rayons extends CI_Controller {
 	 * \param $id_rayon Identifiant du rayon — Type int.
 	*/
 	public function consulter($id_rayon) {
+	
 		$data['rayon'] = $this->rayons_model->consulter_rayon($id_rayon)[0];
 		
 		if(empty($data['rayon'])) {
@@ -36,6 +37,8 @@ class Rayons extends CI_Controller {
 			redirect('rayons/lister');
 		}
 		
+		$this->load->model('produits_model');
+		$data['produits'] = $this->produits_model->lister_produits_rayon($id_rayon);
 		$data['section_title'] = 'Détails du rayon « '.$data['rayon']['rayon_nom'].' »';
 		
 		$this->load->view('rayons/consulter', $data);

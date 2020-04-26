@@ -4,11 +4,11 @@
     <form action="<?php echo $post['liste_id']; ?>" method="post" enctype="multipart/form-data">
 		<ul>
 			<li>
-				<label for="liste_nom" required>Nom de la liste</label>
+				<label for="liste_nom"  class="required">Nom de la liste</label>
 				<input type="text" id="rayon_nom" name="liste_nom" value="<?php echo $post['liste_nom']; ?>" size="35" required>
 				<?php echo form_error("liste_nom"); ?>
 			</li>
-		</ul>
+		</li>
 		<input type="submit" value="Valider" ><?php echo anchor('listes_courses/lister', 'Annuler', 'title="Retourner aux listes de courses"'); ?>
     </form>
     

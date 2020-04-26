@@ -1,3 +1,15 @@
+<!-- Remplissage automatique des nombres de personnes -->
+<script>
+function fillInput(e) {
+    var values = <?php echo json_encode($recettes); ?>;
+    var elements =  document.getElementsByClassName("courses_recette_nombre_personnes");
+    for(i=0 ; i<values.length ; i++) {
+        if(e.target.value == values[i].recette_id) {
+            elements[elements.length-1].value = values[i].recette_nombre_personnes;
+        }
+    }
+}
+</script>
 <section>
 	<?php if($this->session->flashdata('error_message')) { ?>
 	<ul><li class="error_message"><?php echo $this->session->flashdata('error_message'); ?></li></ul>
@@ -10,15 +22,15 @@
     <form class="repeater" method="post" enctype="multipart/form-data">
 		<ul class="repeater" data-repeater-list="recettes">
             <li data-repeater-item>
-                <select class="select2" name="recette_id" required>
+                <select class="select2" name="recette_id" onchange="fillInput(event)" required>
                 <option value="">----------</option>
                 <?php foreach($recettes as $recette) {
                     echo "<option value=".$recette['recette_id'].">";
-                    echo $recette['recette_nom'].' ('.$recette['recette_nombre_personnes'].' pers.)';
+                    echo $recette['recette_nom'];
                     echo "</option>";
                 } ?>
                 </select>
-                <input type="number" id="courses_recette_nombre_personnes" name="courses_recette_nombre_personnes" min="1" step="1" required/>
+                <input type="number" class="courses_recette_nombre_personnes" name="courses_recette_nombre_personnes" placeholder="Nombre de personnes" min="1" step="1" required/>
                 <input data-repeater-delete type="button" value="Supprimer" size="2"/>
             </li>
 		</ul><input data-repeater-create id="repeater-button" type="button" value="Recette supplémentaire"/>

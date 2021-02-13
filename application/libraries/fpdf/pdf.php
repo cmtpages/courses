@@ -10,7 +10,7 @@ function SetCol($col)
 {
     // Positionnement sur une colonne
     $this->col = $col;
-    $x = 10+$col*65;
+    $x = 10+$col*85;
     $this->SetLeftMargin($x);
     $this->SetX($x);
 }
@@ -41,7 +41,7 @@ function Header()
 {
     // En-tête
     $this->SetFont('Arial','B',17);
-    $this->Cell(0,10,$this->title,1,2,'C');
+    $this->Cell(0,10,utf8_decode($this->title),1,2,'C');
     $this->Ln(10);
     // Sauvegarde de l'ordonnée
     $this->y0 = $this->GetY();
@@ -58,7 +58,7 @@ function ListeAchats($achats, $id_rayon) {
 	foreach($achats as $achat) {
 		if($achat['rayon_id'] == $id_rayon) {
 			$this->Write(0,utf8_decode('- '.$achat['produit_nom']));
-			if(!empty($achat['achat_quantite_totale'])) {
+			if(($achat['achat_quantite_totale'])!=0) {
 				$this->Write(0,utf8_decode(' : '.$achat['achat_quantite_totale'].' '.$achat['unite_nom']));
 			}
 			$this->Ln(5);

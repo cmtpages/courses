@@ -9,18 +9,22 @@ class Rayons_model extends CI_Model
     }
     
     public function consulter_rayon($id_rayon) {
-		$query = $this->db->get_where($this->table, array('rayon_date_suppression' => NULL, 'rayon_id' => $id_rayon))->result_array();
+		$query = $this->db->get_where($this->table, array('
+            rayon_date_suppression' => NULL,
+            'rayon_id' => $id_rayon, 'utilisateur_id' => $this->session->userdata['utilisateur_id'])
+        )->result_array();
 		
 		return $query;
     }
 	
 	public function lister_rayons(){
-		$query = $this->db->order_by('rayon_nom')->get_where($this->table, array('rayon_date_suppression' => NULL))->result_array();
+		$query = $this->db->order_by('rayon_nom')->get_where($this->table, array('rayon_date_suppression' => NULL, 'utilisateur_id' => $this->session->userdata['utilisateur_id']))->result_array();
 		
 		return $query;
 	}
 	
 	public function save_rayon($rayon) {
+        $rayon['utilisateur_id'] = $this->session->userdata['utilisateur_id'];
 		$this->db->insert($this->table, $rayon);
 	}
 	

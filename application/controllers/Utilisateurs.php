@@ -22,8 +22,7 @@ class Utilisateurs extends CI_Controller {
 
     
 	// PUBLIC FUNCTIONS
-	
-	public function consulter($id_utilisateur) {        
+	public function consulter($id_utilisateur) {
 		$data['utilisateur'] = $this->utilisateurs_model->consulter_utilisateur($id_utilisateur)[0];
 		
 		if(empty($data['utilisateur'])) {
@@ -45,13 +44,15 @@ class Utilisateurs extends CI_Controller {
 		
 		if($this->input->post()) { // Si c'est une validation
             $post = $this->input->post();
-            $data['utilisateur'] = $this->utilisateurs_model->conecter_utilisateur($post['utilisateur_login'], $post['utilisateur_password'])[0];
+            $data['utilisateur'] = $this->utilisateurs_model->conecter_utilisateur($post['utilisateur_login'], $post['utilisateur_password']);
             if(empty($data['utilisateur'])) {
                 $this->session->set_flashdata('error_message', 'L\'utilisateur demandé n\'existe pas (mauvais nom d\'utilisateur ou mauvais mot de passe).');
                $this->load->view('utilisateurs/connecter', $data);
             }
             else {
+                $data['utilisateur'] =$data['utilisateur'][0];
                 $this->session->set_userdata('utilisateur_id', $data['utilisateur']['utilisateur_id']);
+                $this->session->set_userdata('utilisateur_login', $data['utilisateur']['utilisateur_login']);
                 $this->session->set_flashdata('confirm_message', 'Vous êtes maintenant connecté.');
                 redirect('rayons/lister');
             }

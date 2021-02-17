@@ -6,7 +6,6 @@
             <ul><li class="confirm_message"><?php echo $this->session->flashdata('confirm_message'); ?></li></ul>
 	<?php } ?>
 	<?php echo heading($section_title, 2); ?>
-	<div class="liens_haut_page"><?php echo anchor('utilisateurs/lister', 'Connexion', 'title="Connexion"'); ?></div>
     <form action="connecter" method="post" enctype="multipart/form-data">
 		<ul>
 			<li>

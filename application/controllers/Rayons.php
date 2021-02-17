@@ -7,17 +7,17 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Rayons extends CI_Controller {
+class Rayons extends MY_Controller {
 	function __construct(){
         parent::__construct();
         $this->data = array(
             'header_title' => 'Gestion des rayons',
         );
         
-        $this->load->model('rayons_model');
-        
         $this->load->view('common/header', $this->data);
         $this->load->view('common/menu', $this->data);
+        
+        $this->load->model('rayons_model');
     }
 
     
@@ -85,6 +85,7 @@ class Rayons extends CI_Controller {
 		if($this->input->post()) {
 			$data['rayon'] = array(
 				'rayon_nom' => $this->input->post('rayon_nom'),
+				'utilisateur_id' => $this->session->userdata['utilisateur_id'],
 			);
 			$this->rayons_model->update_rayon($id_rayon, $data['rayon']);
 			$this->session->set_flashdata('confirm_message', 'Le rayon a été modifié.');

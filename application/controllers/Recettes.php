@@ -8,7 +8,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Recettes extends CI_Controller {
+class Recettes extends MY_Controller {
 	function __construct(){
         parent::__construct();
         $this->data = array(
@@ -30,11 +30,10 @@ class Recettes extends CI_Controller {
 	*/
 	public function consulter($id_recette = NULL) {
 		$data['recette'] = $this->recettes_model->consulter_recette($id_recette);
-		
-		if(empty($data['recette'])) {
-			$this->session->set_flashdata('error_message', 'La recette demandée n\'existe pas.');
-			redirect('recettes/lister');
-		}
+		if(!isset($data['recette']['ingredients'])) { // Si la recette n'appartient pas à l'utilisateur connecté
+            $this->session->set_flashdata('error_message', 'La recette demandée n\'existe pas.');
+            redirect('recettes/lister');
+        }
 		$data['section_title'] = 'Détails de la recette « '.$data['recette']['details'][0]['recette_nom'].' »';
 		
 		$data['recette']['details'] = $data['recette']['details'][0];
@@ -105,8 +104,7 @@ class Recettes extends CI_Controller {
 		}
 		else {  // Sinon, on prépare l'affichage du formulaire.
 			$recette = $this->recettes_model->consulter_recette($id_recette);
-			
-			if(empty($recette)) { 
+			if(!isset($recette['ingredients'])) { // Si la recette n'appartient pas à l'utilisateur connecté
 				$this->session->set_flashdata('error_message', 'La recette demandée n\'existe pas.');
 				redirect('recettes/lister');
 			}
@@ -146,7 +144,7 @@ class Recettes extends CI_Controller {
 			if(empty($data['recette'])) {
 				$this->session->set_flashdata('error_message', 'La recette demandée n\'existe pas.');
 				redirect('recettes/lister');
-		}
+            }
 			$data['section_title'] = 'Suppression de la recette « '.$data['recette']['recette_nom'].' »';
 			$this->load->view('recettes/supprimer', $data);
 			$this->load->view('common/footer');

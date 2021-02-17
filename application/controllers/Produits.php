@@ -7,7 +7,7 @@
 */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Produits extends CI_Controller {
+class Produits extends MY_Controller {
 	function __construct(){
         parent::__construct();
         $this->data = array(
@@ -110,6 +110,7 @@ class Produits extends CI_Controller {
 			$data['produit'] = array(
 				'produit_nom' => $this->input->post('produit_nom'),
 				'rayon_id'    => $this->input->post('rayon_id'),
+				'utilisateur_id' => $this->session->userdata['utilisateur_id'],
 			);
 			$this->produits_model->update_produit($id_produit, $data['produit']);
 			$this->session->set_flashdata('confirm_message', 'Le produit a été modifié.');

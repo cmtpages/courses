@@ -29,12 +29,14 @@
 </head>
 
 <body>
-	<header><h1>
-		<?php echo $header_title; ?>
-	</h1></header>
-	<p><?php if(isset($this->session->userdata['utilisateur_id'])) {?>
+    <p><?php if(isset($this->session->userdata['utilisateur_id'])) {?>
+        Vous êtes connecté en tant que <?php echo $this->session->userdata['utilisateur_login']; ?>.
         <a href="<?php echo base_url().'index.php/utilisateurs/deconnecter'; ?>">Se déconnecter</a>
 	<?php }
 	else { ?>
         <a href="<?php echo base_url().'index.php/utilisateurs/connecter'; ?>">Se connecter</a>
     <?php } ?></p>
+	<header><h1>
+		<?php echo $header_title; ?>
+	</h1></header>
+	

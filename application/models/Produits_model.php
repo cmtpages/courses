@@ -15,6 +15,7 @@ class Produits_model extends CI_Model
 				 ->where('p.produit_date_suppression IS NULL', NULL, False)
 		         ->where('r.rayon_date_suppression IS NULL', NULL, False)
 		         ->where('p.produit_id ='.$id_produit)
+		         ->where('p.utilisateur_id = '.$this->session->userdata['utilisateur_id'])
 		         ->where('p.rayon_id=r.rayon_id')
 				 ->get()->result_array();
 		return $query;
@@ -28,6 +29,8 @@ class Produits_model extends CI_Model
 		         ->where('p.produit_date_suppression IS NULL', NULL, False)
 		         ->where('r.rayon_date_suppression IS NULL', NULL, False)
 		         ->where('r.rayon_id = p.rayon_id')
+		         ->where('p.utilisateur_id = '.$this->session->userdata['utilisateur_id'])
+		         ->where('r.utilisateur_id = '.$this->session->userdata['utilisateur_id'])
 				 ->order_by($order)
 				 ->get()->result_array();
 		return $query;
@@ -41,6 +44,8 @@ class Produits_model extends CI_Model
 			->where('r.rayon_date_suppression IS NULL', NULL, False)
 			->where('r.rayon_id = p.rayon_id')
 			->where('p.rayon_id ='.$id_rayon)
+			->where('p.utilisateur_id = '.$this->session->userdata['utilisateur_id'])
+			->where('r.utilisateur_id = '.$this->session->userdata['utilisateur_id'])
 			->order_by('p.produit_nom')
 			->get()->result_array();
 		return $query;
@@ -54,12 +59,15 @@ class Produits_model extends CI_Model
 			  ->where('p.produit_id='.$id_produit)
 			  ->where('p.produit_date_suppression IS NULL', NULL, False)
 			  ->where('i.ingredient_date_suppression IS NULL', NULL, False)
+			  ->where('p.utilisateur_id = '.$this->session->userdata['utilisateur_id'])
+			  ->where('r.utilisateur_id = '.$this->session->userdata['utilisateur_id'])
 			  ->get()->result_array();
 			  
 		return $query;
 	}
 	
 	public function save_produit($produit) {
+        $produit['utilisateur_id'] = $this->session->userdata['utilisateur_id'];
 		$this->db->insert($this->table, $produit);
 	}
 	

@@ -10,12 +10,16 @@ class Recettes_model extends CI_Model
     
     public function consulter_recette($id_recette) {
 		$query['details'] = $this->details_recette($id_recette);
-		$query['ingredients'] = $this->ingredients_recette($id_recette);
+		if(!empty($query['details']))
+            $query['ingredients'] = $this->ingredients_recette($id_recette);
 		return $query;
     }
 	
 	public function lister_recettes(){
-		$query = $this->db->order_by('recette_nom')->get_where($this->table, array('recette_date_suppression' => NULL))->result_array();
+		$query = $this->db->order_by('recette_nom')->get_where($this->table, array(
+            'recette_date_suppression' => NULL,
+            'utilisateur_id' => $this->session->userdata['utilisateur_id']
+        ))->result_array();
 		
 		return $query;
 	}
@@ -27,6 +31,7 @@ class Recettes_model extends CI_Model
 	}
 	
 	public function save_recette($recette) {
+        $recette['utilisateur_id'] = $this->session->userdata['utilisateur_id'];
 		$this->db->insert($this->table, $recette);
 		return $this->db->insert_id();
 	}
@@ -49,7 +54,9 @@ class Recettes_model extends CI_Model
 	protected function details_recette($id_recette) {
 		$query = $this->db->select('recette_nom, recette_instructions, recette_nombre_personnes, recette_id')
 				 ->from($this->table)
-				 ->where('recette_date_suppression IS NULL', NULL, False)		         ->where('recette_id ='.$id_recette)
+				 ->where('recette_date_suppression IS NULL', NULL, False)		         
+				 ->where('recette_id ='.$id_recette)
+				 ->where('utilisateur_id = '.$this->session->userdata['utilisateur_id'])
 				 ->get()->result_array();
 		return $query;
 	}

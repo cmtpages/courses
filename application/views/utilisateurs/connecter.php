@@ -15,7 +15,7 @@
 			</li>
 			<li>
 				<label for="utilisateur_password" class="required">Mot de passe</label>
-				<input type="text" id="utilisateur_password" name="utilisateur_password" size="35" type="password" required>
+				<input type="password" id="utilisateur_password" name="utilisateur_password" size="35" type="password" required>
 				<?php echo form_error("utilisateur_password"); ?>
 			</li>
 		</ul>

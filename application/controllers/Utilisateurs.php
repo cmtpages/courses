@@ -53,12 +53,44 @@ class Utilisateurs extends CI_Controller {
                 $data['utilisateur'] =$data['utilisateur'][0];
                 $this->session->set_userdata('utilisateur_id', $data['utilisateur']['utilisateur_id']);
                 $this->session->set_userdata('utilisateur_login', $data['utilisateur']['utilisateur_login']);
-                $this->session->set_flashdata('confirm_message', 'Vous êtes maintenant connecté.');
+                $this->session->set_flashdata('confirm_message', 'Vous êtes maintenant connecté en tant que '.$this->session->userdata['utilisateur_login'].'.');
                 redirect('rayons/lister');
             }
 		}
+		else { // Sinon, affichage du formulaire
+            if(isset($this->session->userdata['utilisateur_login'])) {
+                 $this->session->set_flashdata('error_message', 'Vous êtes déjà connecté.');
+                 redirect('rayons/lister');
+            }
+            else
+                $this->load->view('utilisateurs/connecter', $data);
+		}
+        $this->load->view('common/footer');
+    }
+    
+    public function creer() {
+		$this->load->helper('form');
+		
+		$data['section_title'] = 'Nouvel utilisateur';
+		
+		if($this->input->post()) { // Si c'est une validation
+            $this->form_validation->set_rules('utilisateur_login', 'Nom d\'utilisateur', 'is_unique[utilisateurs_utilisateur.utilisateur_login]',
+                array('is_unique' => 'Ce nom d\'utilisateur est déjà utilisé.') 
+            );
+            $this->form_validation->set_rules('utilisateur_mail', 'Adresse mail', 'is_unique[utilisateurs_utilisateur.utilisateur_mail]',
+                array('is_unique' => 'Cette adresse mail est déjà utilisée.') 
+            );
+             if (!$this->form_validation->run()) { // Si formulaire incorrect
+                $this->load->view('utilisateurs/creer', $data);
+            }
+            else { // Si formulaire correct
+                $this->ajouter_utilisateur();
+                $this->session->set_flashdata('confirm_message', 'L\'utilisateur a été créé.');
+                redirect('utilisateurs/connecter');
+            }
+		}
 		else // Sinon, affichage du formulaire
-			$this->load->view('utilisateurs/connecter', $data);
+			$this->load->view('utilisateurs/creer', $data);
 		
         $this->load->view('common/footer');
     }
@@ -87,74 +119,18 @@ class Utilisateurs extends CI_Controller {
         $this->load->view('common/footer');
     }
     
-    /**
-	 * \brief Modifie un rayon existant et redirige vers la liste des rayons.
-	 * \param $id_rayon : Identifiant du rayon. — Type int.
-	*/
-    public function modifier($id_rayon) {
-		$this->load->helper('form');
-		
-		$data['section_title'] = 'Modification d\'un rayon';
-		
-		if($this->input->post()) {
-			$data['rayon'] = array(
-				'rayon_nom' => $this->input->post('rayon_nom'),
-			);
-			$this->rayons_model->update_rayon($id_rayon, $data['rayon']);
-			$this->session->set_flashdata('confirm_message', 'Le rayon a été modifié.');
-			redirect('rayons/lister');
-		}
-		else {
-			$rayon = $this->rayons_model->consulter_rayon($id_rayon)[0];
-			if(empty($rayon)) {
-				$this->session->set_flashdata('error_message', 'Le rayon demandé n\'existe pas.');
-				redirect('rayons/lister');
-			}
-			$data['post'] = $rayon;
-			$data['section_title'] = 'Modification du rayon « '.$rayon['rayon_nom'].' »';
-			
-			$this->load->view('rayons/modifier', $data);
-			$this->load->view('common/footer');
-		}
-	}
-	
-	/** 
-	 * \brief Supprime un rayon existant et redirige vers la liste des rayons.
-	 * \param $id_rayon — Type int.
-	*/
-	public function supprimer($id_rayon) {		
-		if($this->input->post()) { // Si c'est un post, on met la base à jour.
-			$data['rayon'] = array(
-				'rayon_date_suppression' => date('Y-m-d H:i:s'),
-			);
-			$this->rayons_model->update_rayon($id_rayon, $data['rayon']);
-			$this->session->set_flashdata('confirm_message', 'Le rayon a été supprimé.');
-			redirect('rayons/lister');
-		}
-		else { // Sinon, on affiche la page de confirmation.
-			$rayon = $this->rayons_model->consulter_rayon($id_rayon)[0];
-			if(empty($rayon)) {
-				$this->session->set_flashdata('error_message', 'Le rayon demandé n\'existe pas.');
-				redirect('rayons/lister');
-			}
-			$data['rayon'] = $rayon;
-			$data['section_title'] = 'Suppression du rayon « '.$rayon['rayon_nom'].' »';
-			
-			$this->load->view('rayons/supprimer', $data);
-			$this->load->view('common/footer');
-		}
-    }
-    
     // PROTECTED FUNCTIONS
     /** 
 	 * \brief Prépare les données pour la création d'un rayon, et appelle la requête.
 	 * 
 	*/
-    protected function ajouter_rayon() {
-		$data['rayon'] = array(
-			'rayon_nom' => $this->input->post('rayon_nom'),
-			'rayon_date_creation' => date('Y-m-d H:i:s'),
+    protected function ajouter_utilisateur() {
+		$data['utilisateur'] = array(
+			'utilisateur_mail' => $this->input->post('utilisateur_mail'),
+			'utilisateur_login' => $this->input->post('utilisateur_login'),
+			'utilisateur_password' => $this->input->post('utilisateur_password'),
+			'utilisateur_date_creation' => date('Y-m-d H:i:s'),
 		);
-		$this->rayons_model->save_rayon($data['rayon']);
+		$this->utilisateurs_model->save_utilisateur($data['utilisateur']);
     }
 }

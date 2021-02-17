@@ -34,6 +34,7 @@
         <a href="<?php echo base_url().'index.php/utilisateurs/deconnecter'; ?>">Se déconnecter</a>
 	<?php }
 	else { ?>
+        <a href="<?php echo base_url().'index.php/utilisateurs/creer'; ?>">Se créer un compte</a> — 
         <a href="<?php echo base_url().'index.php/utilisateurs/connecter'; ?>">Se connecter</a>
     <?php } ?></p>
 	<header><h1>

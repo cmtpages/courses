@@ -1,5 +1,5 @@
 # Gestionnaire de listes de courses
-Gestionnaire minimaliste de listes de courses en PHP/SQL (moteur SQLite). À utiliser sur un réseau local, car ne fournit pas d'espace utilisateur.
+Gestionnaire minimaliste de listes de courses en PHP/SQL (MySQL). À utiliser sur un réseau local, car ne fournit pas d'espace utilisateur.
 
 Au départ développé pour un usage personnel, je partage le code source ici. C'est programmé rapidement et sans grand soin. Je n'assure pas le suivi du code, qui n'est d'ailleurs pas documenté correctement.
 

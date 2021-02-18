@@ -30,8 +30,9 @@
 
 <body>
     <p><?php if(isset($this->session->userdata['utilisateur_id'])) {?>
-        Vous êtes connecté en tant que <?php echo $this->session->userdata['utilisateur_login']; ?>.
-        <a href="<?php echo base_url().'index.php/utilisateurs/deconnecter'; ?>">Se déconnecter</a>
+        Vous êtes connecté en tant que <?php echo $this->session->userdata['utilisateur_login']; ?>. 
+        <a href="<?php echo base_url().'index.php/utilisateurs/deconnecter'; ?>">Se déconnecter</a> —
+        <a href="<?php echo base_url().'index.php/utilisateurs/modifier_motdepasse'; ?>">Changer de mot de passe</a>
 	<?php }
 	else { ?>
         <a href="<?php echo base_url().'index.php/utilisateurs/creer'; ?>">Se créer un compte</a> — 

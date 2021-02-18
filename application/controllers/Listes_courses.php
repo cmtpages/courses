@@ -249,6 +249,7 @@ class Listes_courses extends MY_Controller {
     protected function ajouter_listecourses() {
 		$data['liste'] = array(
 			'liste_nom' => $this->input->post('liste_nom'),
+			'utilisateur_id' => $this->session->userdata['utilisateur_id'],
 			'liste_date_creation' => date('Y-m-d H:i:s'),
 		);
 		return $this->listescourses_model->save_listecourses($data['liste']);

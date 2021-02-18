@@ -15,9 +15,16 @@ class Utilisateurs_model extends CI_Model
     }
     
     public function conecter_utilisateur($utilisateur_login, $utilisateur_password) {
-		$query = $this->db->get_where($this->table, array('utilisateur_date_suppression' => NULL, 'utilisateur_password' => $utilisateur_password, 'utilisateur_login' => $utilisateur_login))->result_array();
-		
-		return $query;
+		$query = $this->db->get_where($this->table, array(
+            'utilisateur_date_suppression' => NULL,
+            'utilisateur_login' => $utilisateur_login)
+        )->result_array();
+        if(isset($query[0]) AND password_verify($utilisateur_password, $query[0]['utilisateur_password'])) {	
+            return $query;
+        }
+        else {
+            return NULL;
+        }
     }
 	
 	public function lister_utilisateurs(){
@@ -27,10 +34,12 @@ class Utilisateurs_model extends CI_Model
 	}
 	
 	public function save_utilisateur($utilisateur) {
+        $utilisateur['utilisateur_password'] = password_hash($utilisateur['utilisateur_password'], PASSWORD_DEFAULT);
 		$this->db->insert($this->table, $utilisateur);
 	}
 	
 	public function update_utilisateur($id_utilisateur, $data) {
+        $data['utilisateur_password'] = password_hash($data['utilisateur_password'], PASSWORD_DEFAULT);
 		$this->db->where('utilisateur_id', $id_utilisateur);
 		$this->db->update($this->table, $data);
 	}

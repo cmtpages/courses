@@ -111,6 +111,42 @@ class Utilisateurs extends CI_Controller {
         $this->load->view('common/footer');
     }
     
+    public function modifier_motdepasse() {
+        $id_utilisateur = $this->session->userdata['utilisateur_id'];
+		$this->load->helper('form');
+		
+		$data['section_title'] = 'Modification du mot de passe';
+		
+		if($this->input->post()) {
+            $utilisateur = $this->utilisateurs_model->consulter_utilisateur($id_utilisateur)[0];
+            
+            if(password_verify($this->input->post('utilisateur_password_actuel'), $utilisateur['utilisateur_password'])) {
+                $data['utilisateur'] = array(
+                    'utilisateur_password' => $this->input->post('utilisateur_password'),
+                );
+                $this->utilisateurs_model->update_utilisateur($id_utilisateur, $data['utilisateur']);
+                $this->session->set_flashdata('confirm_message', 'Le mot de passe a été mis à jour.');
+                redirect('rayons/lister');
+            }
+            else {
+                $this->session->set_flashdata('error_message', 'Mot de passe actuel inccorect.');
+                redirect('utilisateurs/modifier_motdepasse');
+            }
+		}
+		else {
+			$utilisateur = $this->utilisateurs_model->consulter_utilisateur($id_utilisateur)[0];
+			if(empty($utilisateur)) {
+				$this->session->set_flashdata('error_message', 'L\'utilisateur demandé n\'exist pas.');
+				redirect('rayons/lister');
+			}
+			$data['post'] = $utilisateur;
+			$data['section_title'] = 'Modification du mot de passe de '.$utilisateur['utilisateur_login'].'.';
+			
+			$this->load->view('utilisateurs/modifier_motdepasse', $data);
+			$this->load->view('common/footer');
+		}
+	}
+    
     public function lister() {
 		$data['section_title'] = 'Liste des utilisateurs';
 		

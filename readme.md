@@ -19,7 +19,3 @@ La page d'entrée vers l'application est /index.php/rayons/lister.
 J'accepte volontiers toutes les contributions, mais comme précisé plus haut, je ne m'engage pas à fournir une documentation détaillée pour le code, ni d'ailleurs à proposer un code très propre.
 
 Si vous souhaitez proposer une pull request, ne travailler que sur la branche dev, la branche master contenant le dernier code stable convenablement testé.
-
-## Fonctionnalités prévues
-Sur une recette, saisie du nombre de personnes, ce qui se répercuterait sur la génération des listes de courses.
-
